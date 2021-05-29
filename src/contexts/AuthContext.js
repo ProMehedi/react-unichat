@@ -8,7 +8,7 @@ export const useAuth = () => useContext(AuthContext)
 
 export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState(null)
 
   const history = useHistory()
 
@@ -16,7 +16,9 @@ export const AuthProvider = ({ children }) => {
     auth.onAuthStateChanged((data) => {
       setUser(data)
       setLoading(false)
-      history.push('/chats')
+      if (data) {
+        history.push('/chats')
+      }
     })
   }, [user, history])
 

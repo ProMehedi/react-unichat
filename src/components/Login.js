@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FacebookOutlined, GoogleOutlined } from '@ant-design/icons'
 
 import firebase from 'firebase/app'
 import { auth } from '../firebase'
+import { useAuth } from '../contexts/AuthContext'
 
 const Login = () => {
+  const [loading, setLoading] = useState(true)
+  const { user } = useAuth()
+
+  useEffect(() => {
+    if (!user) {
+      setLoading(false)
+    }
+  }, [user])
+
+  if (user || loading) {
+    return <h1>Loading....</h1>
+  }
   return (
     <div id='login-page'>
       <div id='login-card'>

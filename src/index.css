@@ -69,10 +69,16 @@
 
 .login-button {
   cursor: pointer;
+  border: none;
   color: white;
   padding: 12px;
   border-radius: 8px;
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
+}
+
+.login-button + .login-button {
+  margin-top: 15px;
 }
 
 .facebook {
